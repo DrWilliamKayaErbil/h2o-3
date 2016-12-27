@@ -44,6 +44,10 @@
   timeout_secs <- 0
   stopifnot(is(conn, "H2OConnection"))
   stopifnot(is.character(urlSuffix))
+  stopifnot(is.logical(binary))
+  if(binary != FALSE && method != "GET"){
+    stop("binary data is only supported with HTTP GET responses")
+  }
   if (missing(parms))
     parms = list()
   else {
